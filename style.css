@@ -1,0 +1,362 @@
+:root {
+  --primary-color: #d62828;
+  --secondary-color: #fcbf49;
+  --text-color: #111111;
+  --text-soft: #555;
+  --bg-light: #fdf0d5;
+  --bg-soft: #e0e0e0;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poopins", sans-serif;
+}
+
+/* ===== SLIDER ===== */
+.auto-slider {
+  height: 100vh;
+  position: relative;
+  inset: 0;
+  background: var(--bg-light);
+  overflow: hidden;
+}
+
+.slider-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ===== SLIDE CONTAINER ===== */
+.slide-container {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* ===== PRODUCT WRAPPER (GERAK BARENG) ===== */
+.product-wrapper {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+
+  width: 520px;
+  height: 520px;
+
+  transform: translateY(-50%);
+}
+
+/* ===== BULATAN ===== */
+.bg-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 360px;
+  height: 360px;
+
+  background: var(--primary-color);
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* ===== GLOW ===== */
+.bg-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 480px;
+  height: 480px;
+
+  background: radial-gradient(
+    circle,
+    rgba(196, 123, 7, 0.65) 0%,
+    rgba(196, 123, 7, 0.35) 45%,
+    rgba(196, 123, 7, 0.15) 65%,
+    rgba(196, 123, 7, 0.05) 80%,
+    transparent 100%
+  );
+
+  transform: translate(-50%, -50%);
+  filter: blur(55px);
+  z-index: 0;
+}
+
+/* ===== IMAGE (DIAM) ===== */
+.slide-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+
+  z-index: 2;
+}
+
+/* ===== ANIMASI VERTICAL ===== */
+@keyframes productHorizontal {
+  0% {
+    transform: translate(140%, -50%) scale(0.85);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translate(80%, -50%) scale(0.95);
+    opacity: 0.6;
+  }
+
+  40% {
+    transform: translate(0%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translate(0%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(140%, -50%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+.slide.active .product-wrapper {
+  animation: productHorizontal 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ===== TEXT ===== */
+.text-container {
+  position: absolute;
+  left: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 40%;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--bg-light);
+  background-color: var(--primary-color);
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+}
+
+.product-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.product-desc {
+  font-size: 1.35rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-soft);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1.1rem 3.6rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 18px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .product-wrapper {
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 360px;
+    height: 360px;
+  }
+
+  .bg-circle {
+    width: 260px;
+    height: 260px;
+  }
+
+  .bg-ring {
+    width: 320px;
+    height: 320px;
+  }
+
+  .slide-img {
+    width: 360px;
+    height: 360px;
+  }
+
+  .text-container {
+    width: 90%;
+    left: 5%;
+    text-align: center;
+  }
+
+  .product-title {
+    font-size: 3rem;
+  }
+}
+
+/* ===============================
+   TABLET & MOBILE
+================================ */
+@media (max-width: 768px) {
+  .auto-slider {
+    height: 100svh;
+  }
+
+  /* PRODUCT */
+  .product-wrapper {
+    right: 50%;
+    top: 38%;
+    transform: translate(50%, -50%);
+    width: 300px;
+    height: 300px;
+  }
+
+  .bg-circle {
+    width: 220px;
+    height: 220px;
+  }
+
+  .bg-ring {
+    width: 280px;
+    height: 280px;
+    filter: blur(45px);
+  }
+
+  .slide-img {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* TEXT */
+  .text-container {
+    top: auto;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+
+  .product-title {
+    font-size: 2.6rem;
+    line-height: 1.15;
+  }
+
+  .product-desc {
+    font-size: 1.05rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .cta-button {
+    padding: 0.9rem 2.8rem;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+}
+
+/* ===============================
+   SMALL MOBILE
+================================ */
+@media (max-width: 480px) {
+  .product-wrapper {
+    top: 34%;
+    width: 240px;
+    height: 240px;
+  }
+
+  .bg-circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  .bg-ring {
+    width: 230px;
+    height: 230px;
+    filter: blur(40px);
+  }
+
+  .slide-img {
+    width: 240px;
+    height: 240px;
+  }
+
+  .product-title {
+    font-size: 2.1rem;
+  }
+
+  .product-desc {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 0.9rem;
+  }
+}
+
+/* products terlaris - Updated */
+.promo {
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  background-color: var(--bg-soft);
+  text-align: center;
+}
+
+.promo .promo-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.promo .promo-title span {
+  color: var(--primary-color);
+}
+
+.promo-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-soft);
+}
